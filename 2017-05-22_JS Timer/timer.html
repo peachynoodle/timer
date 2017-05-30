@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Timer</title>
+<style>p {font-size: 36px;}</style>
+<script>
+// 1. Let the timer run till it stops. How many seconds
+//    remain? Make an adjustment to the tick function so
+//    that the timer stops at 0.
+//
+// 2. Apply the formatTime function to seconds in the tick
+//    function so that the time displays nicely.
+//
+// 3. When the time is initally displayed, it is in default
+//    paragraph color (black). Modify the start function so
+//    that once the clock starts, the time (in span tag) is
+//    displayed in green text.
+//
+// 4. Modify the tick function so that once the timer stops,
+//    the time is displayed in red.
+//
+// 5. Modify the seconds variable so that the timer will run
+//    for exactly three minutes. Be sure that when the page
+//    first loads, the correct time is displayed.
+
+var seconds;
+var timer;
+
+function start() {
+    if (timer) {
+        clearInterval(timer);
+    }
+
+    seconds = 120;
+    timer = setInterval(tick, 1000);
+
+    document.getElementById('timer').style.color = "#009900";
+}
+
+function tick() {
+    document.getElementById('timer').innerHTML = formatTime(seconds);
+
+    if (seconds > 0) {
+        seconds = seconds - 1;
+    }
+    else {
+        document.getElementById('timer').style.color = "#990000";
+        clearInterval(timer);
+    }
+}
+
+function formatTime(seconds) {
+    var mm = Math.floor(seconds / 60);
+    var ss = seconds % 60;
+
+    if (ss<10) {
+        ss = "0" + ss;
+    }
+
+    return mm + ":" + ss;
+}
+</script>
+</head>
+
+<body>
+<h1>JavaScript Intervals and Timing</h1>
+
+<h2>Timer</h2>
+<input type="button" onclick="start()" value="Start timer">
+<p>Time: <span id="timer">0:05</span></p>
+
+
+<h2>Math examples</h2>
+<p>
+<script>
+// These problems should help you understand a little bit about
+// how the formatTime function works.
+
+// Rounding
+
+var x = 5.8;
+var y = 3.1;
+
+document.write( Math.round(x) + "<br>");
+document.write( Math.floor(x) + "<br>" );
+document.write( Math.ceil(x) + "<br>" );
+
+document.write( Math.round(y) + "<br>");
+document.write( Math.floor(y) + "<br>" );
+document.write( Math.ceil(y) + "<br>" );
+
+document.write("<br>");
+
+
+// Division
+var a = 38;
+var b = 5;
+var q = a / b;
+document.write( q + "<br>" );
+document.write("<br>");
+
+// Modulus
+var r = a % b;
+
+document.write( r + "<br>" );
+document.write("<br>");
+
+
+// putting it together
+q = Math.floor(a / b);
+r = a % b;
+
+document.write(a + " / " + b + " = " + q + " R" + r);
+document.write("<br>");
+
+
+
+// Your turn...
+
+// 6. Determine the value of 483549 / 483 as a decimal.
+
+
+// 7. Determine the value of 483549 / 483 rounded to the
+//    nearest integer.
+
+
+// 8. Determine the whole quotent of 483549 / 483?
+//    (divide and round down)
+
+
+// 9. Determine the remainder of 483549 / 483?
+//    (use modulus)
+
+
+// 10. Calculate the number of dollars and cents in
+//     a given number of pennies. Then display the
+//     answer in a complete sentence. For example,
+//     output could be "50327 pennies is equivalent
+//     to 503 dollars and 27 cents.
+
+var pennies = 50327;
+
+
+
+
+// Challenge:
+//
+// Consider a case where you have some number of pennies
+// and you want to re-represent it in change using as few coins
+// as possible (quarters, dimes, nickels, and pennies only).
+// For example, 392 cents could be represented as 15 quarters,
+// 1 dime, 1 nickel, and 2 pennies.
+//
+// What is the most efficient coin representation of 50327
+// pennies?
+
+</script>
+</p>
+
+</body>
+</html>
